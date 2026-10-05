@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GlassBallot: transparent to verify, private to vote</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" href="#/vote" aria-label="GlassBallot home">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="4" y="9" width="24" height="19" rx="2" class="mk-box"/><rect x="9" y="5" width="14" height="4" rx="1" class="mk-slot"/><path d="M11 18h10M11 22h6" class="mk-line"/></svg>
+      <span>GlassBallot</span>
+    </a>
+    <nav id="nav" aria-label="Main">
+      <a href="#/vote" data-r="vote">Vote</a>
+      <a href="#/verify" data-r="verify">Verify</a>
+      <a href="#/witnesses" data-r="witnesses">Witnesses</a>
+      <a href="#/control" data-r="control">Control room</a>
+    </nav>
+    <span id="state-pill" class="pill" role="status"></span>
+  </div>
+</header>
+<main id="view" tabindex="-1"></main>
+<footer class="foot">
+  <p>A prototype for low-stakes college elections. It has not had an independent security audit and should not be used for real elections until it has.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="/static/lib.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
