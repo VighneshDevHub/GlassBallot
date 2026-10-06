@@ -41,7 +41,7 @@ const features = [
 const inputClass =
   "h-12 rounded-2xl bg-[#F5F5F4] border-[#EAEAE5] focus-visible:ring-2 focus-visible:ring-[#DAF39F] text-sm font-medium";
 
-function AdminLoginInner() {
+function AdminLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next") || "/admin";
@@ -85,7 +85,7 @@ function AdminLoginInner() {
   };
 
   return (
-    <PublicLayout>
+    <>
       <section className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 sm:px-6 py-12">
         <div className="w-full max-w-6xl bg-white rounded-3xl shadow-soft border border-[#EAEAE5] overflow-hidden grid grid-cols-1 lg:grid-cols-5">
           {/* Illustration */}
@@ -256,6 +256,30 @@ function AdminLoginInner() {
           </div>
         </div>
       </section>
+    </>
+  );
+}
+
+function AdminLoginFallback() {
+  return (
+    <section className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 sm:px-6 py-12">
+      <div className="w-full max-w-md space-y-6">
+        <Skeleton className="h-4 w-32 rounded-full" />
+        <Skeleton className="h-10 w-4/5 rounded-2xl" />
+        <Skeleton className="h-4 w-full rounded-full" />
+        <Skeleton className="h-12 w-full rounded-2xl" />
+        <Skeleton className="h-12 w-full rounded-2xl" />
+      </div>
+    </section>
+  );
+}
+
+export default function AdminLogin() {
+  return (
+    <PublicLayout>
+      <Suspense fallback={<AdminLoginFallback />}>
+        <AdminLoginContent />
+      </Suspense>
     </PublicLayout>
   );
 }
