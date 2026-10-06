@@ -6,7 +6,7 @@ services:
     region: oregon
     plan: free
     buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir backend
+    startCommand: cd backend && PYTHONPATH=..:. uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health/live
     envVars:
       - key: APP_ENV
@@ -18,7 +18,7 @@ services:
       - key: OTP_PROVIDER
         value: development
       - key: PYTHONPATH
-        value: backend:.
+        value: ..:.
       - key: SECRET_KEY
         generateValue: true
       - key: SESSION_SECRET
