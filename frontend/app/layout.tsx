@@ -23,6 +23,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${manrope.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen bg-[#F5F5F4] text-[#202124] font-sans antialiased">
         <main className="min-h-screen">{children}</main>
         <Toaster richColors position="top-right" closeButton />
