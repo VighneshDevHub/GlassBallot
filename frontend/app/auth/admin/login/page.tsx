@@ -27,10 +27,6 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PublicLayout } from "@/components/layouts/PublicLayout";
 
-// Prevent static prerender issues — this page relies on client-side searchParams
-// and login state (cookies / localStorage), which are only meaningful at request time.
-export const dynamic = "force-dynamic";
-
 const features = [
   { icon: KeyRound, text: "Shamir 2-of-3 threshold tally", color: "pastel-peach" },
   { icon: FileCode, text: "Hash-chained admin audit log", color: "pastel-lavender" },
