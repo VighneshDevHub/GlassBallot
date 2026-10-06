@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAdminSession } from "@/hooks/useAdminSession";
@@ -13,22 +13,35 @@ import {
   ArrowRight,
   Eye,
   EyeOff,
-  UserCircle,
   Sparkles,
   ChevronLeft,
   Activity,
   FileCode,
   Building2,
-  CheckCircle2,
   Database,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 import { PublicLayout } from "@/components/layouts/PublicLayout";
 
-export default function AdminLogin() {
+// Prevent static prerender issues — this page relies on client-side searchParams
+// and login state (cookies / localStorage), which are only meaningful at request time.
+export const dynamic = "force-dynamic";
+
+const features = [
+  { icon: KeyRound, text: "Shamir 2-of-3 threshold tally", color: "pastel-peach" },
+  { icon: FileCode, text: "Hash-chained admin audit log", color: "pastel-lavender" },
+  { icon: Database, text: "Two-books 1:1 reconciliation", color: "pastel-sky" },
+  { icon: Activity, text: "Attack simulation & detection", color: "pastel-lime" },
+];
+
+const inputClass =
+  "h-12 rounded-2xl bg-[#F5F5F4] border-[#EAEAE5] focus-visible:ring-2 focus-visible:ring-[#DAF39F] text-sm font-medium";
+
+function AdminLoginInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next") || "/admin";
@@ -70,16 +83,6 @@ export default function AdminLogin() {
       setLoading(false);
     }
   };
-
-  const features = [
-    { icon: KeyRound, text: "Shamir 2-of-3 threshold tally", color: "pastel-peach" },
-    { icon: FileCode, text: "Hash-chained admin audit log", color: "pastel-lavender" },
-    { icon: Database, text: "Two-books 1:1 reconciliation", color: "pastel-sky" },
-    { icon: Activity, text: "Attack simulation & detection", color: "pastel-lime" },
-  ];
-
-  const inputClass =
-    "h-12 rounded-2xl bg-[#F5F5F4] border-[#EAEAE5] focus-visible:ring-2 focus-visible:ring-[#DAF39F] text-sm font-medium";
 
   return (
     <PublicLayout>

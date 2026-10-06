@@ -98,7 +98,7 @@ export default function StudentLogin() {
   ];
 
   return (
-    <PublicLayout>
+    <>
       <section className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 sm:px-6 py-12">
         <div className="w-full max-w-6xl bg-white rounded-3xl shadow-soft border border-[#EAEAE5] overflow-hidden grid grid-cols-1 lg:grid-cols-5">
           {/* Illustration panel */}
@@ -297,6 +297,30 @@ export default function StudentLogin() {
           </div>
         </div>
       </section>
+    </>
+  );
+}
+
+function StudentLoginFallback() {
+  return (
+    <section className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 sm:px-6 py-12">
+      <div className="w-full max-w-md space-y-6">
+        <Skeleton className="h-4 w-32 rounded-full" />
+        <Skeleton className="h-10 w-4/5 rounded-2xl" />
+        <Skeleton className="h-4 w-full rounded-full" />
+        <Skeleton className="h-12 w-full rounded-2xl" />
+        <Skeleton className="h-12 w-full rounded-2xl" />
+      </div>
+    </section>
+  );
+}
+
+export default function StudentLogin() {
+  return (
+    <PublicLayout>
+      <Suspense fallback={<StudentLoginFallback />}>
+        <StudentLoginInner />
+      </Suspense>
     </PublicLayout>
   );
 }
