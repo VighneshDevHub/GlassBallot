@@ -28,6 +28,17 @@ Tests: `python -m unittest discover -s tests` (18 tests). Browser walkthrough: s
 
 ---
 
+## Free Cloud Deployment (Vercel + Render + Neon)
+
+Deploy the entire production stack (FastAPI + Next.js 14 + PostgreSQL) **100% free** in less than 5 minutes:
+- **Frontend ([Vercel](https://vercel.com))**: Next.js 14 App Router with native WebCrypto client-side sealing.
+- **Backend ([Render](https://render.com))**: FastAPI async REST API with included 1-click [`render.yaml`](render.yaml) blueprint.
+- **Database ([Neon.tech](https://neon.tech))**: Serverless PostgreSQL (0.5 GB free storage forever).
+
+👉 **[Read the Complete Free Deployment Guide](docs/deployment_guide.md)**
+
+---
+
 ## The idea: Three Locks and a Window
 
 | | What | Where in the code |

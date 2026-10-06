@@ -16,6 +16,12 @@ if "@postgres:" in db_url or "@postgres/" in db_url:
     except socket.gaierror:
         db_url = "sqlite+aiosqlite:///./glassballot.db"
 
+# Normalize cloud provider URLs (e.g. Neon, Render, Supabase, Railway)
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql+asyncpg://", 1)
+elif db_url.startswith("postgresql://") and not db_url.startswith("postgresql+asyncpg://"):
+    db_url = db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+
 engine = create_async_engine(
     db_url,
     pool_pre_ping=True,

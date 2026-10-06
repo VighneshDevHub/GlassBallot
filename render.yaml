@@ -1,0 +1,29 @@
+services:
+  # GlassBallot Backend (FastAPI)
+  - type: web
+    name: glassballot-backend
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir backend
+    healthCheckPath: /health/live
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: DEMO_MODE
+        value: "true"
+      - key: OTP_PROVIDER
+        value: development
+      - key: PYTHONPATH
+        value: backend:.
+      - key: SECRET_KEY
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false # Set to your free Neon or Render PostgreSQL connection string
+      - key: CORS_ORIGINS
+        value: "http://localhost:3000" # Update with your Vercel frontend URL once deployed
